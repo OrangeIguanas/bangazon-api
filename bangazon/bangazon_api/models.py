@@ -1,11 +1,11 @@
 from django.db import models
 
-# Create your models here.
-class product_has_order (models.Model):
-	product_id = models.Integerfield
-	order_id = models.Integerfield
+# purpose: this class is to create a junction table between 
+# the product table and the order table .
+# author: Shawn 
+# method: none 
 
-class Meta: 
-	ordering = (product_id, order_id)
+class product_order (models.Model):
+	product_id = models.Foreignkey("product_id", related_name = 'product_id')
+	order_id = models.Foreignkey("order_id", related_name = 'order_id')
 
-	
