@@ -5,3 +5,6 @@ __pycache__
 bin
 obj
 *.db
+*db
+db.sqlite3
+
