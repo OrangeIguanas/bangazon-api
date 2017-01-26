@@ -8,13 +8,13 @@ from django.db import models
 
 """
 class Customers(models.Model):
-    first_name = CharField(max_length=100, default='')
-    last_name = CharField(max_length =100)
-    created_date = DateTimeField(auto_now_add=True)
-    street_address = TextField()
-    city = CharField(max_length=100)
-    zip_code = IntegerField(max_length=12)
-    state = CharField(max_length=20)
+    first_name = models.CharField(max_length=100, default='')
+    last_name = models.CharField(max_length =100)
+    created_date = models.DateTimeField(auto_now_add=True)
+    street_address = models.TextField()
+    city = models.CharField(max_length=100)
+    zip_code = models.IntegerField()
+    state = models.CharField(max_length=20)
 
     class Meta:
         ordering = ('last_name',)
