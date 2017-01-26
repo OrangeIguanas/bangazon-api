@@ -16,8 +16,8 @@ class Products(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.CharField(max_length=140)
     quantity = models.IntegerField()
-    # categoryId = models.ForeignKey(Category)
-    # customerId = models.ForeignKey(Customer)
+    categoryId = models.ForeignKey(Category)
+    customerId = models.ForeignKey(Customer)
 
     class Meta:
         ordering = ('name',)
