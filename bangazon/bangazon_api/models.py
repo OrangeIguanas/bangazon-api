@@ -6,6 +6,6 @@ class product_has_order (models.Model):
 	order_id = models.Integerfield
 
 class Meta: 
-	ordering = [product_id, order_id]
+	ordering = (product_id, order_id)
 
 	
