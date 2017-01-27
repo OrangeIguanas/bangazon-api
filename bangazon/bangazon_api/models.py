@@ -1,6 +1,6 @@
 from django.db import models
 
-class Categories(model.Model):
+class Categories(models.Model):
     """ 
     Categories model class
     The purpose of this class is to define the Categories data model.
@@ -29,8 +29,8 @@ class Products(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.CharField(max_length=140)
     quantity = models.IntegerField()
-    categoryId = models.ForeignKey(Category)
-    customerId = models.ForeignKey(Customer)
+    category_Id = models.ForeignKey(Categories)
+    customer_Id = models.ForeignKey(Customers)
 
     class Meta:
         ordering = ('name',)
