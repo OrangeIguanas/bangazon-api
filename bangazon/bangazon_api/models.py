@@ -22,6 +22,7 @@ class Customers(models.Model):
     def __str__(self):
         return '{} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.created_date, self.street_address, self.city, self.zip_code, self.state)
 
+
 class Categories(models.Model):
     """ 
     Categories model class
@@ -63,4 +64,24 @@ class Products(models.Model):
         return '{} {} {} {} {} {}'.format(self.name, self.price, self.description, self.quantity, self.category_Id, self.customer_Id)
 
 
+class PaymentType(models.Model):
+    """PaymentType model class
+        The purpose of this class is to define customer's payment types
+        author: Abby
+        methods: string return
+        meta: plural name
+    """
+    card_type = models.CharField(max_length=30)
+    card_number = models.CharField(max_length=25)
+    cvv = models.CharField(max_length=4)
+    expiration = models.DateField(auto_now=False)
+    billing_name = models.CharField(max_length=55)
+    customer_id = models.ForeignKey(Customers, null=True)
 
+    class Meta:
+        verbose_name_plural = "PaymentTypes"
+
+    def __str__(self):
+        return '{} {} {} {} {} {}'.format(self.card_type, self.card_number, self.cvv, self.expiration, self.billing_name, self.customer_id,)
+
+        
