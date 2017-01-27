@@ -7,4 +7,4 @@ obj
 *.db
 *db
 db.sqlite3
-
+migrations

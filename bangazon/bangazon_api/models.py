@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Customers(models.Model):
     """Customers model class
         The purpose of this class is to define the Customers data model.
@@ -20,6 +19,9 @@ class Customers(models.Model):
     class Meta:
         ordering = ('last_name',)
 
+    def __str__(self):
+        return '{} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.created_date, self.street_address, self.city, self.zip_code, self.state)
+
 
 class Categories(models.Model):
     """ 
@@ -36,7 +38,6 @@ class Categories(models.Model):
 
     def __str__(self):
         return '{}'.format(self.name)
-
 
 class Products(models.Model):
 
