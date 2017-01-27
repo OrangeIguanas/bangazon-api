@@ -4,7 +4,7 @@ class Customers(models.Model):
     """Customers model class
         The purpose of this class is to define the Customers data model.
         author: Ike
-        methods: none
+        methods: __str__ Returns a string
         subclasses: Meta (with ordering by last_name)
     """
     
@@ -19,6 +19,9 @@ class Customers(models.Model):
     class Meta:
         ordering = ('last_name',)
 
+    def __str__(self):
+        return '{} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.created_date, self.street_address, self.city, self.zip_code, self.state)
+
 class Categories(models.Model):
     """ 
     Categories model class
@@ -27,11 +30,13 @@ class Categories(models.Model):
     subclasses: Meta (with ordering by name)
     
     """
-    name= models.CharField(max_length=55)
+    category_name = models.CharField(max_length=55)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('category_name',)
 
+    def __str__(self):
+        return '{}'.format(self.name)
 
 class Products(models.Model):
 
@@ -48,11 +53,14 @@ class Products(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.CharField(max_length=140)
     quantity = models.IntegerField()
-    category_Id = models.ForeignKey(Categories)
-    customer_Id = models.ForeignKey(Customers)
+    category_Id = models.ForeignKey(Categories, null=True)
+    customer_Id = models.ForeignKey(Customers, null=True)
 
     class Meta:
         ordering = ('name',)
+
+    def __str__(self):
+        return '{} {} {} {} {} {}'.format(self.name, self.price, self.description, self.quantity, self.category_Id, self.customer_Id)
 
 
 
