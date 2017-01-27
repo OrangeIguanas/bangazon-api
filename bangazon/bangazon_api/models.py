@@ -1,5 +1,18 @@
 from django.db import models
 
+class Categories(model.Model):
+    """ 
+    Categories model class
+    The purpose of this class is to define the Categories data model.
+    author: Zach
+    subclasses: Meta (with ordering by name)
+    
+    """
+    name= models.CharField(max_length=55)
+
+    class Meta:
+        ordering = ('name',)
+
 
 class Products(models.Model):
 
