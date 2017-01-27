@@ -67,7 +67,7 @@ class PaymentType(models.Model):
     """PaymentType model class
         The purpose of this class is to define customer's payment types
         author: Abby
-        methods: none
+        methods: string return
         meta: plural name
     """
     card_type = models.CharField(max_length=30)
@@ -81,5 +81,5 @@ class PaymentType(models.Model):
         verbose_name_plural = "PaymentTypes"
 
     def __str__(self):
-        return '{} {} {} {} {} {} {}'.format(self.first_name, self.last_name, self.created_date, self.street_address, self.city, self.zip_code, self.state)
+        return '{} {} {} {} {} {}'.format(self.card_type, self.card_number, self.cvv, self.expiration, self.billing_name, self.customer_id,)
 
