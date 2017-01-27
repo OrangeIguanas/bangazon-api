@@ -84,3 +84,4 @@ class PaymentType(models.Model):
     def __str__(self):
         return '{} {} {} {} {} {}'.format(self.card_type, self.card_number, self.cvv, self.expiration, self.billing_name, self.customer_id,)
 
+        
