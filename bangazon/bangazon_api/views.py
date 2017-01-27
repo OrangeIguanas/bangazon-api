@@ -5,7 +5,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from .models import Customers
 from .serializers import CustomersSerializer
-#see a change
+
 class JSONResponse(HttpResponse):
     """
     An HttpResponse that renders its content into JSON.
@@ -22,17 +22,24 @@ def list_of_customers(request):
     """
     purpose: returns the Customers list for the bangazon_api app
     or adds a customer to the customers list
-    
-
+    arguments:
+        request- request object that extends HttpRequest, the request
+        represents an incoming HTTP request, including user-submitted data
+        and HTTP headers
     """
+
+
     if request.method == 'GET':
-        customers = Customers.objects.all()
+        customers = Customers.objects.all() #gets all customer objects
         serializer = CustomersSerializer(customers, many=True)
         return JSONResponse(serializer.data)
 
+    #Add customer to customer list (if request method is post)
     elif request.method = 'POST':
+        #converts python data types into json
         data = JSONParser().parse(request)
         serializer = CustomersSerializer(data=data)
+        #save customer to database if data structure is correct
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data)
@@ -63,5 +70,8 @@ def customer(request, customer_id):
         return HttpResponse(status=404)
     
     if request.method == 'GET':
+        # pass the customer object into the Serializer which will convert model
+        # data to python data type
         serializer = CustomersSerializer(customer)
+        #convert data type to JSONResponse
         return JSONResponse(serializer.data)
