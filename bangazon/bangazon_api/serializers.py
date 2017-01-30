@@ -44,9 +44,6 @@ class CategoriesSerializer(serializers.ModelSerializer):
         model = Categories
         fields = ('category_name',)
 
-
-
-
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 	""" purpose: convert model to JSON format
 		author: Pete
@@ -58,4 +55,13 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 		model = Orders
 		fields = ('payment_types_id',)
 
-
+class PaymentTypesSerializer(serializers.ModelSerializer):
+	""" purpose: convert PaymentTypes model to JSON format
+		author: Abby
+		methods: Meta
+		Class: PaymentTypes
+		Fields: Include all
+	"""
+	class Meta:
+		model = PaymentType
+		fields = ('card_type', 'card_number', 'cvv', 'expiration', 'billing_name', 'customer_id' )
