@@ -10,5 +10,5 @@ class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 		Fields: Include all 
 	'''
 	class Meta:
-        model = Orders
-        fields = ('payment_types_id',)
+		model = Orders
+		fields = ('payment_types_id',)
