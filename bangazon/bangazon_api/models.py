@@ -96,3 +96,16 @@ class Orders(models.Model):
 	def __int__(self):
 		return '{}'.format(self.payment_types_id)
 
+class ProductHasOrders (models.Model):
+	"""
+		purpose: this class is to create a junction table between 
+		the product table and the order table .
+		author: Shawn 
+		method: none 
+	"""
+
+	product = models.ForeignKey(Products, null=True)
+	orders = models.ForeignKey(Orders, null=True)
+
+	def __str__(self):
+		return '{} {}'.format(self.product, self.orders)

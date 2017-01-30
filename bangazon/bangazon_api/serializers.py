@@ -53,3 +53,14 @@ class PaymentTypesSerializer(serializers.ModelSerializer):
 		model = PaymentType
 		fields = ('card_type', 'card_number', 'cvv', 'expiration', 'billing_name', 'customer_id' )
 
+
+class ProductHasOrdersSerializer(serializers.ModelSerializer):
+	""" purpose: convert ProductHasOrders model to JSON format
+		author: Shawn
+		methods: Meta
+		Class: ProductHasOrders
+		Fields: Include all
+	"""
+	class Meta: 
+		model = ProductHasOrders
+		fields = ('product','orders')
