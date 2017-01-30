@@ -72,13 +72,11 @@ class Products(models.Model):
     
     """
 
-class product_order (models.Model):
-    product_id = models.Foreignkey("product_id", related_name = 'product_id')
-    order_id = models.Foreignkey("order_id", related_name = 'order_id')
+class ProductHasOrders (models.Model):
+    product_id = models.Foreignkey('Products', related_name = 'product_id')
+    order_id = models.Foreignkey('Orders', related_name = 'order_id')
 
-    class Meta:
 
     def __str__(self):
         return '{} {}'.format(self.product_id, self.order_id)
 
-        
