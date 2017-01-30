@@ -89,7 +89,7 @@ class Orders(models.Model):
     """Order Class
         This class tracks individual customer orders
         author: Peter
-        Methods: returns foreign key of Payment Type as int
+        methods: returns foreign key of Payment Type as int
     """
     payment_types_id = models.ForeignKey(PaymentType, null=True)
    
