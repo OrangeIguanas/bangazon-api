@@ -91,8 +91,8 @@ class Orders(models.Model):
         author: Peter
         Methods: returns foreign key of Payment Type as int
      """
-    payment_types_id = models.ForeignKey(Payment_Type, null=True)
+    payment_types_id = models.ForeignKey(PaymentType, null=True)
    
-   def __int__(self):
+    def __int__(self):
         return '{}'.format(self.payment_types_id)
 
