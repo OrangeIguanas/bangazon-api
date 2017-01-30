@@ -84,4 +84,15 @@ class PaymentType(models.Model):
     def __str__(self):
         return '{} {} {} {} {} {}'.format(self.card_type, self.card_number, self.cvv, self.expiration, self.billing_name, self.customer_id,)
 
-        
+
+class Orders(models.Model): 
+     """Order Class
+        This class tracks individual customer orders
+        author: Peter
+        Methods: returns foreign key of Payment Type as int
+     """
+    payment_types_id = models.ForeignKey(Payment_Type, null=True)
+   
+   def __int__(self):
+        return '{}'.format(self.payment_types_id)
+
