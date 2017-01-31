@@ -8,7 +8,14 @@ from .serializers import CustomersSerializer
 
 class JSONResponse(HttpResponse):
     """
-    An HttpResponse that renders its content into JSON.
+    purpose: An HttpResponse that renders its content into JSON.
+    Author: Ike
+    Methods: __init__
+        purpose: initialize a new instnce of JSON response
+        arguments: 
+        self- reference to the class instance being created
+        data- request data
+        kwargs- setting contenty type to application/json
     """
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
@@ -22,12 +29,12 @@ def list_of_customers(request):
     """
     purpose: returns the Customers list for the bangazon_api app
     or adds a customer to the customers list
+    Author: Ike
     arguments:
         request- request object that extends HttpRequest, the request
         represents an incoming HTTP request, including user-submitted data
         and HTTP headers
     """
-
 
     if request.method == 'GET':
         customers = Customers.objects.all() #gets all customer objects
@@ -35,22 +42,25 @@ def list_of_customers(request):
         return JSONResponse(serializer.data)
 
     #Add customer to customer list (if request method is post)
-    elif request.method = 'POST':
+    elif request.method == 'POST':
         #converts python data types into json
         data = JSONParser().parse(request)
         serializer = CustomersSerializer(data=data)
+        
         #save customer to database if data structure is correct
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data)
         return JSONResponse(serializer.errors, status=400)
+      
+    #a context is a dictionary in which
+    #keys are names we'll use in the template to access the data and values are 
+    #the data we need to send to the template
+     context =  {'Customers' : Customers} 
+    
 
-    # context =  {'customers' : customers} # a context is a dictionary in which
-    # #keys are names we'll use in the template to access the data and values are 
-    # #the data we need to send to the template
-
-# @csrf decorator (@) to denote that this function should be
-# run despite not having a CSRF token, which is is the cross-site request
+ # @csrf decorator (@) to denote that this function should be
+ # run despite not having a CSRF token, which is is the cross-site request
  # forgery defense system
 @csrf_exempt 
 def customer(request, customer_id):
