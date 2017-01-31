@@ -1,0 +1,84 @@
+[
+  {
+    "model": "bangazon_api.Customers",
+    "pk": 1,
+    "fields": {
+      "first_name": "Rafael",
+      "last_name": "Nadal",
+      "created_date": "2016-04-11 2:23:56" ,
+      "street_address": "345th street",
+      "city": "Bothell",
+      "zip_code": "98021",
+      "state": "Washington"
+    }
+  },
+  {
+    "model": "bangazon_api.Customers",
+    "pk": 2,
+    "fields": {
+      "first_name": "Roger",
+      "last_name": "Federer",
+      "created_date": "2016-04-11 3:23:56" ,
+      "street_address": "340th street",
+      "city": "Redmond",
+      "zip_code": "98052",
+      "state": "Washington"
+    }
+  },
+
+  {
+    "model": "bangazon_api.Categories",
+    "pk": 1,
+    "fields": {
+      "category_name": "sports"
+    }
+  },
+  
+  {
+    "model": "bangazon_api.Categories",
+    "pk": 2,
+    "fields": {
+      "category_name": "books"
+    }
+  },
+
+  {
+    "model": "bangazon_api.Products",
+    "pk": 1,
+    "fields": {
+      "name": "tennis racket",
+      "price": "30.56",
+      "description": "50",
+      "quantity": "2",
+      "category_Id": 1,
+      "customer_Id": 1
+    }
+  },
+
+  {
+    "model": "bangazon_api.Products",
+    "pk": 2,
+    "fields": {
+      "name": "tennis racket",
+      "price": "5.56",
+      "description": "tennis balls",
+      "quantity": "30",
+      "category_Id": 1,
+      "customer_Id": 2
+    }
+  },
+
+  {
+    "model": "bangazon_api.Products",
+    "pk": 3,
+    "fields": {
+      "name": "Winning Forever",
+      "price": "12",
+      "description": "Book by Pete Carroll",
+      "quantity": "3",
+      "category_Id": 2,
+      "customer_Id": 2
+    }
+  }
+
+]
