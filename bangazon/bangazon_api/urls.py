@@ -2,7 +2,12 @@ from django.conf.urls import url, include
 from bangazon_api import views
 
 urlpatterns = [
-    url(r'^product_list/$', views.product_list),
-    url(r'^product_list/(?P<pk>[0-9]+)/$$', views.single_product),
+    url(r'^Customers/$', views.list_of_customers, name='list_of_customers')
+    url(r'^Customers/(?P<customer_id>[0-9]+)$', views.customer, name='customer')
     url(r'^category_list/$', views.category_list),
+    url(r'^product_list/$', views.product_list),
+    url(r'^payment_types_list/$', payment_types_list),
+    url(r'^payment_types_list/(?P<pk>[0-9]+)/$', single_payment_type),
+    url(r'^product_list/(?P<product_id>[0-9]+)/$', views.single_product),
+    url(r'^productorders/$', productorders.site.urls),
 ]

@@ -20,8 +20,15 @@ class JSONResponse(HttpResponse):
 @csrf_exempt
 def product_list(request):
     """
-    Retrieve, update or delete a product.
+    purpose: Show a list of products
+    arguments:
+    request- request object that extends HttpRequest, the request
+    represents an incoming HTTP request, including user-submitted data
+    and HTTP headers
+    
     """
+    #try to retrieve product_list object if that
+    # list does not exist then display 404 error
     try:
         product_list = Products.objects.all(request)# Returns All product objects
     except Products.DoesNotExist: #Handle Any Exceptions
@@ -45,10 +52,16 @@ def product_list(request):
 
 
 def single_product(request, product_id):
-    '''
-    Retrieve, update or delete a single product.
-
-    '''
+    """
+    purpose: Show a single product and product details
+    arguments:
+    request- request object that extends HttpRequest, the request
+    represents an incoming HTTP request, including user-submitted data
+    and HTTP headers
+    product_id - the unique ID for the given product
+    """
+    #try to retrieve product object that matches our product id, if that
+    # single_product does not exist then display 404 error
 
     try: 
         single_product = Products.objects.get(id = product_id)#Returns Products with A specific Id
@@ -56,7 +69,7 @@ def single_product(request, product_id):
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = ProductsSerializer(product_id)
+        serializer = ProductsSerializer(single_product)
         return JSONResponse(serializer.data)
 
     elif request.method == 'PUT':
@@ -72,6 +85,18 @@ def single_product(request, product_id):
         return HttpResponse(status=204)
 
 def category_list(request):
+    """
+    purpose: returns the Categories list for the bangazon_api app
+    or adds a Category to the Categories list
+    arguments:
+    request- request object that extends HttpRequest, the request
+    represents an incoming HTTP request, including user-submitted data
+    and HTTP headers
+
+    """
+    #try to retrieve category object that matches our category id, if that
+    # category does not exist then display 404 error
+
 
     try:
         category = Categories.object.all(request)
@@ -107,7 +132,7 @@ def list_of_customers(request):
         serializer = CustomersSerializer(customers, many=True)
         return JSONResponse(serializer.data)
 
-    elif request.method = 'POST':
+    elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = CustomersSerializer(data=data)
         if serializer.is_valid():
@@ -115,7 +140,8 @@ def list_of_customers(request):
             return JSONResponse(serializer.data)
         return JSONResponse(serializer.errors, status=400)
 
-    # context =  {'customers' : customers} # a context is a dictionary in which
+    context =  {'customers' : customers} 
+    # a context is a dictionary in which
     # #keys are names we'll use in the template to access the data and values are 
     # #the data we need to send to the template
 
