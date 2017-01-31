@@ -79,6 +79,27 @@
       "category_Id": 2,
       "customer_Id": 2
     }
+  },
+
+  {
+    "model": "bangazon_api.PaymentType",
+    "pk": 1,
+    "fields": {
+      "card_type": "Visa",
+      "card_number": "000 000 0000",
+      "cvv": "000",
+      "expiration": "2018-10-11",
+      "billing_name": "Rafael W. Nadal",
+      "customer_id": 1
+    }
+  },
+
+  {
+    "model": "bangazon_api.Orders",
+    "pk": 1,
+    "fields": {
+      "payment_types_id": 1
+    }
   }
 
 ]
