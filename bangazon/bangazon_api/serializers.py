@@ -44,7 +44,7 @@ class CategoriesSerializer(serializers.ModelSerializer):
         model = Categories
         fields = ('category_name',)
 
-class OrdersSerializer(serializers.HyperlinkedModelSerializer):
+class OrdersSerializer(serializers.ModelSerializer):
 	""" purpose: convert model to JSON format
 		author: Pete
 		methods: Meta
