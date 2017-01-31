@@ -9,8 +9,8 @@ from .serializers import *
 
 class JSONResponse(HttpResponse):
 	"""
+	author: Ike
 	purpose: An HttpResponse that renders its content into JSON.
-	Author: Ike
 	Methods: __init__
 		purpose: initialize a new instnce of JSON response
 		arguments: 
@@ -27,6 +27,7 @@ class JSONResponse(HttpResponse):
 @csrf_exempt
 def product_list(request):
 	"""
+	author: Ike
 	purpose: Show a list of products
 	arguments:
 	request- request object that extends HttpRequest, the request
@@ -60,6 +61,7 @@ def product_list(request):
 @csrf_exempt
 def single_product(request, product_id):
 	"""
+	author: Zach
 	purpose: Show a single product and product details
 	arguments:
 	request- request object that extends HttpRequest, the request
@@ -94,6 +96,7 @@ def single_product(request, product_id):
 @csrf_exempt
 def category_list(request):
 	"""
+	author: Zach
 	purpose: returns the Categories list for the bangazon_api app
 	or adds a Category to the Categories list
 	arguments:
@@ -130,9 +133,9 @@ def category_list(request):
 @csrf_exempt       
 def list_of_customers(request):
 	"""
+	author: Ike
 	purpose: returns the Customers list for the bangazon_api app
 	or adds a customer to the customers list
-	Author: Ike
 	arguments:
 		request- request object that extends HttpRequest, the request
 		represents an incoming HTTP request, including user-submitted data
@@ -170,6 +173,7 @@ def list_of_customers(request):
 @csrf_exempt
 def customer(request, customer_id):
 	"""
+	author: Ike
 	purpose: Show a single customer and customer details
 	arguments:
 		request- request object that extends HttpRequest, the request
@@ -196,9 +200,10 @@ def customer(request, customer_id):
 @csrf_exempt
 def order_list(request):
 	"""
+	author: Abby
 	purpose: Allow user to get("view") and post("create") data
 	arguments: request - Request extends Django's HttpRequest
-	author: Abby
+	
 	"""
 	if request.method == 'GET':
 		order = Orders.objects.all()
@@ -219,9 +224,10 @@ def order_list(request):
 @csrf_exempt
 def order_detail(request, pk):
 	"""
+	author: Abby
 	purpose: Allow user to get("view") and put("update") and delete data
 	arguments: request - Request extends Django's HttpRequest, pk - Primary Key
-	author: Abby
+	
 	"""
 
 	try:
@@ -244,6 +250,75 @@ def order_detail(request, pk):
 	elif request.method == 'DELETE':
 		order.delete()
 		return HttpResponse(status=204) #204 - Fulfilled - No Additional Content
+
+@csrf_exempt
+def payment_types_list(request):
+    """
+    author: Pete
+    purpose: Show a list of products
+    arguments:
+    request- request object that extends HttpRequest, the request
+    represents an incoming HTTP request, including user-submitted data
+    and HTTP headers
+    
+    """
+    #try to retrieve product_list object if that
+    # list does not exist then display 404 error
+    try:
+        payment_types_list = PaymentType.objects.all()# Returns All product objects
+    except PaymentType.DoesNotExist: #Handle Any Exceptions
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = PaymentTypesSerializer(payment_types_list, many=True) #When getting many objects include many=True as a parameter
+        return JSONResponse(serializer.data)# Returning Data as Json
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = PaymentTypesSerializer(payment_types_list, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data)
+        return JSONResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        payment_types_list.delete()
+        return HttpResponse(status=204)
+
+
+def single_payment_type(request, pk):
+    """
+    author: Pete
+    purpose: Show a single product and product details
+    arguments:
+    request- request object that extends HttpRequest, the request
+    represents an incoming HTTP request, including user-submitted data
+    and HTTP headers
+    product_id - the unique ID for the given product
+    """
+    #try to retrieve product object that matches our product id, if that
+    # single_product does not exist then display 404 error
+
+    try: 
+        single_payment_type = PaymentType.objects.get(pk=pk)#Returns Products with A specific Id
+    except PaymentType.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = PaymentTypesSerializer(single_payment_type)
+        return JSONResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = PaymentTypesSerializer(single_payment_type, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONRenderer(serializer.data)
+        return JSONResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        single_product.delete()
+        return HttpResponse(status=204)
 
 
 
