@@ -86,7 +86,7 @@ def single_product(request, product_id):
 		serializer = ProductsSerializer(single_product, data=data)
 		if serializer.is_valid():
 			serializer.save()
-			return JSONRenderer(serializer.data)
+			return JSONResponse(serializer.data)
 		return JSONResponse(serializer.errors, status=400)
 
 	elif request.method == 'DELETE':
@@ -123,7 +123,7 @@ def category_list(request):
 		serializer = ProductsSerializer(category, data=data)
 		if serializer.is_valid():
 			serializer.save()
-			return JSONRenderer(serializer.data)
+			return JSONResponse(serializer.data)
 		return JSONResponse(serializer.errors, status=400)
 
 	elif request.method == 'DELETE':
@@ -313,7 +313,7 @@ def single_payment_type(request, pk):
         serializer = PaymentTypesSerializer(single_payment_type, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JSONRenderer(serializer.data)
+            return JSONResponse(serializer.data)
         return JSONResponse(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
