@@ -6,8 +6,8 @@ urlpatterns = [
     url(r'^Customers/(?P<customer_id>[0-9]+)$', views.customer, name='customer')
     url(r'^category_list/$', views.category_list),
     url(r'^product_list/$', views.product_list),
+    url(r'^product_list/(?P<product_id>[0-9]+)/$', views.single_product),
     url(r'^payment_types_list/$', payment_types_list),
     url(r'^payment_types_list/(?P<pk>[0-9]+)/$', single_payment_type),
-    url(r'^product_list/(?P<product_id>[0-9]+)/$', views.single_product),
     url(r'^productorders/$', productorders.site.urls),
 ]
