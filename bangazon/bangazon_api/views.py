@@ -26,106 +26,106 @@ class JSONResponse(HttpResponse):
 
 @csrf_exempt
 def product_list(request):
-    """
-    purpose: Show a list of products
-    arguments:
-    request- request object that extends HttpRequest, the request
-    represents an incoming HTTP request, including user-submitted data
-    and HTTP headers
-    
-    """
-    #try to retrieve product_list object if that
-    # list does not exist then display 404 error
-    try:
-        product_list = Products.objects.all(request)# Returns All product objects
-    except Products.DoesNotExist: #Handle Any Exceptions
-        return HttpResponse(status=404)
+	"""
+	purpose: Show a list of products
+	arguments:
+	request- request object that extends HttpRequest, the request
+	represents an incoming HTTP request, including user-submitted data
+	and HTTP headers
+	
+	"""
+	#try to retrieve product_list object if that
+	# list does not exist then display 404 error
+	try:
+		product_list = Products.objects.all()# Returns All product objects
+	except Products.DoesNotExist: #Handle Any Exceptions
+		return HttpResponse(status=404)
 
-    if request.method == 'GET':
-        serializer = ProductsSerializer(product_list, many=True) #When getting many objects include many=True as a parameter
-        return JSONResponse(serializer.data)# Returning Data as Json
+	if request.method == 'GET':
+		serializer = ProductsSerializer(product_list, many=True) #When getting many objects include many=True as a parameter
+		return JSONResponse(serializer.data)# Returning Data as Json
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = ProductsSerializer(product_list, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONResponse(serializer.data)
-        return JSONResponse(serializer.errors, status=400)
+	elif request.method == 'PUT':
+		data = JSONParser().parse(request)
+		serializer = ProductsSerializer(product_list, data=data)
+		if serializer.is_valid():
+			serializer.save()
+			return JSONResponse(serializer.data)
+		return JSONResponse(serializer.errors, status=400)
 
-    elif request.method == 'DELETE':
-        product_list.delete()
-        return HttpResponse(status=204)
+	elif request.method == 'DELETE':
+		product_list.delete()
+		return HttpResponse(status=204)
 
 @csrf_exempt
 def single_product(request, product_id):
-    """
-    purpose: Show a single product and product details
-    arguments:
-    request- request object that extends HttpRequest, the request
-    represents an incoming HTTP request, including user-submitted data
-    and HTTP headers
-    product_id - the unique ID for the given product
-    """
-    #try to retrieve product object that matches our product id, if that
-    # single_product does not exist then display 404 error
+	"""
+	purpose: Show a single product and product details
+	arguments:
+	request- request object that extends HttpRequest, the request
+	represents an incoming HTTP request, including user-submitted data
+	and HTTP headers
+	product_id - the unique ID for the given product
+	"""
+	#try to retrieve product object that matches our product id, if that
+	# single_product does not exist then display 404 error
 
-    try: 
-        single_product = Products.objects.get(id = product_id)#Returns Products with A specific Id
-    except Products.DoesNotExist:
-        return HttpResponse(status=404)
+	try: 
+		single_product = Products.objects.get(id = product_id)#Returns Products with A specific Id
+	except Products.DoesNotExist:
+		return HttpResponse(status=404)
 
-    if request.method == 'GET':
-        serializer = ProductsSerializer(single_product)
-        return JSONResponse(serializer.data)
+	if request.method == 'GET':
+		serializer = ProductsSerializer(single_product)
+		return JSONResponse(serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = ProductsSerializer(single_product, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONRenderer(serializer.data)
-        return JSONResponse(serializer.errors, status=400)
+	elif request.method == 'PUT':
+		data = JSONParser().parse(request)
+		serializer = ProductsSerializer(single_product, data=data)
+		if serializer.is_valid():
+			serializer.save()
+			return JSONRenderer(serializer.data)
+		return JSONResponse(serializer.errors, status=400)
 
-    elif request.method == 'DELETE':
-        single_product.delete()
-        return HttpResponse(status=204)
+	elif request.method == 'DELETE':
+		single_product.delete()
+		return HttpResponse(status=204)
 
 @csrf_exempt
 def category_list(request):
-    """
-    purpose: returns the Categories list for the bangazon_api app
-    or adds a Category to the Categories list
-    arguments:
-    request- request object that extends HttpRequest, the request
-    represents an incoming HTTP request, including user-submitted data
-    and HTTP headers
+	"""
+	purpose: returns the Categories list for the bangazon_api app
+	or adds a Category to the Categories list
+	arguments:
+	request- request object that extends HttpRequest, the request
+	represents an incoming HTTP request, including user-submitted data
+	and HTTP headers
 
-    """
-    #try to retrieve category object that matches our category id, if that
-    # category does not exist then display 404 error
+	"""
+	#try to retrieve category object that matches our category id, if that
+	# category does not exist then display 404 error
 
 
-    try:
-        category = Categories.object.all(request)
-    except Products.DoesNotExist:
-        return HttpResponse(status=404)
+	try:
+		category = Categories.objects.all()
+	except Products.DoesNotExist:
+		return HttpResponse(status=404)
 
-    if request.method == 'GET':
-        serializer = CategoriesSerializer(category, many=True)
-        return JSONResponse(serializaer.data)
+	if request.method == 'GET':
+		serializer = CategoriesSerializer(category, many=True)
+		return JSONResponse(serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = ProductsSerializer(category, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONRenderer(serializer.data)
-        return JSONResponse(serializer.errors, status=400)
+	elif request.method == 'PUT':
+		data = JSONParser().parse(request)
+		serializer = ProductsSerializer(category, data=data)
+		if serializer.is_valid():
+			serializer.save()
+			return JSONRenderer(serializer.data)
+		return JSONResponse(serializer.errors, status=400)
 
-    elif request.method == 'DELETE':
-        category.delete()
-        return HttpResponse(status=204)
+	elif request.method == 'DELETE':
+		category.delete()
+		return HttpResponse(status=204)
 
 @csrf_exempt       
 def list_of_customers(request):
@@ -159,7 +159,7 @@ def list_of_customers(request):
 	#a context is a dictionary in which
 	#keys are names we'll use in the template to access the data and values are 
 	#the data we need to send to the template
-	context =  {'Customers' : Customers} 
+	context =  {'customers' : customers} 
 	
 
  # @csrf decorator (@) to denote that this function should be
@@ -212,6 +212,7 @@ def order_list(request):
 			serializer.save()
 			return JSONResponse(serializer.data, status=201) #201 - Request Fulfilled
 		return JSONResponse(serializer.errors, status=400) #400 - Bad Request
+
 
 
 
