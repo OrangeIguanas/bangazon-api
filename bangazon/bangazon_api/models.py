@@ -36,8 +36,8 @@ class Categories(models.Model):
 	class Meta:
 		ordering = ('category_name',)
 
-    def __str__(self):
-      return '{}'.format(self.category_name)
+	def __str__(self):
+		return '{}'.format(self.category_name)
 
 class Products(models.Model):
 
