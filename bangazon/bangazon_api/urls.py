@@ -11,5 +11,7 @@ urlpatterns = [
 	url(r'^product_list/(?P<product_id>[0-9]+)/$', views.single_product),
 	url(r'^payment_types_list/$', views.payment_types_list),
 	url(r'^payment_types_list/(?P<pk>[0-9]+)/$', views.single_payment_type),
-	# url(r'^productorders/$', productorders.site.urls),
+	url(r'^productorders/$', views.productorders_list),
+    url(r'^productorders/(?P<pk>[0-9]+)/$', views.productorders_detail),
 ]
+
