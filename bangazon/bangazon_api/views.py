@@ -6,6 +6,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework import viewsets
 from .models import *
 from .serializers import *
+from rest_framework import viewsets
+
 
 class JSONResponse(HttpResponse):
     """
@@ -95,4 +97,3 @@ class ProductHasOrdersViewSet(viewsets.ModelViewSet):
     queryset =  ProductHasOrders.objects.all()
     serializer_class = ProductHasOrdersSerializer
 
- 

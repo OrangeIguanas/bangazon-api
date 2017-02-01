@@ -2,7 +2,6 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from bangazon_api import views
 
-
 router = routers.DefaultRouter()
 router.register(r'orders', views.OrdersViewSet)
 router.register(r'customers', views.CustomersViewSet)
