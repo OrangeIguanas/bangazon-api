@@ -33,24 +33,24 @@ class CustomersViewSet(viewsets.ModelViewSet):
     queryset = Customers.objects.all().order_by('last_name')
     serializer_class = CustomersSerializer
 
-class CategoriesViewSet():
+class CategoriesViewSet(viewsets.ModelViewSet):
     """
     purpose: returns the categories list for the bangazon_api app
     or adds a category to the customers list
     Author: Zach
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Customers.objects.all().order_by('category_name')
+    queryset = Categories.objects.all().order_by('category_name')
     serializer_class = CategoriesSerializer
 
-class ProductsViewSet():
+class ProductsViewSet(viewsets.ModelViewSet):
     """
     purpose: returns the Customers list for the bangazon_api app
     or adds a customer to the customers list
     Author: Ike
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Customers.objects.all().order_by('name')
+    queryset = Products.objects.all().order_by('name')
     serializer_class = ProductsSerializer
 
 class PaymentTypesViewSet(viewsets.ModelViewSet):
@@ -70,7 +70,7 @@ class OrdersViewSet(viewsets.ModelViewSet):
     Author: Pete
     
     """
-    queryset = Customers.objects.all().order_by('category_name')
+    queryset = Orders.objects.all().order_by('category_name')
     serializer_class = CategoriesSerializer
 
 
@@ -81,7 +81,7 @@ class ProductHasOrdersViewSet(viewsets.ModelViewSet):
     Author: Ike
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Customers.objects.all()
+    queryset =  ProductHasOrders.objects.all()
     serializer_class = ProductHasOrdersSerializer
 
  
