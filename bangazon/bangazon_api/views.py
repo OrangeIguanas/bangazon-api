@@ -81,7 +81,7 @@ class OrdersViewSet(viewsets.ModelViewSet):
     queryset: all datatype objects in specified data model
     serializer_class: points to the serializer for data model
     """
-    queryset = Orders.objects.all().order_by('category_name')
+    queryset = Orders.objects.all()
     serializer_class = CategoriesSerializer
 
 
