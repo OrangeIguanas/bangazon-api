@@ -12,8 +12,7 @@ Constructing an API for Bangazon's client developers to access for their applica
 Using your terminal:
 
 * ```pip install django```
-* ```pip install djangorestframework```
-* ```pip install pygments``` 
+* ```pip install djangorestframework``` 
 
 After installing django, djangorestframework, and pygments, clone the repo locally to your computer.
 
