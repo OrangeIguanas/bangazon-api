@@ -19,7 +19,7 @@ class CustomersSerializer(serializers.HyperlinkedModelSerializer):
          'city', 'zip_code', 'state')
 
 
-class ProductsSerializer(serializers.ModelSerializer):
+class ProductsSerializer(serializers.HyperlinkedModelSerializer):
     """ 
     ProductsSerializer class
     The purpose of this class is to convert the Products data model to Json.
@@ -31,7 +31,7 @@ class ProductsSerializer(serializers.ModelSerializer):
         model = Products
         fields = ('name', 'price', 'description', 'quantity', 'category_Id', 'customer_Id')
 
-class CategoriesSerializer(serializers.ModelSerializer):
+class CategoriesSerializer(serializers.HyperlinkedModelSerializer):
     """ 
     CategoriesSerializer class
     The purpose of this class is to convert the Categories data model to Json.
@@ -44,7 +44,7 @@ class CategoriesSerializer(serializers.ModelSerializer):
         model = Categories
         fields = ('category_name',)
 
-class OrdersSerializer(serializers.ModelSerializer):
+class OrdersSerializer(serializers.HyperlinkedModelSerializer):
 	""" purpose: convert model to JSON format
 		author: Pete
 		methods: Meta
@@ -56,7 +56,7 @@ class OrdersSerializer(serializers.ModelSerializer):
 		fields = ('payment_types_id',)
 
 
-class PaymentTypesSerializer(serializers.ModelSerializer):
+class PaymentTypesSerializer(serializers.HyperlinkedModelSerializer):
 	""" purpose: convert PaymentTypes model to JSON format
 		author: Abby
 		methods: Meta
@@ -68,7 +68,7 @@ class PaymentTypesSerializer(serializers.ModelSerializer):
 		fields = ('card_type', 'card_number', 'cvv', 'expiration', 'billing_name', 'customer_id' )
 
 
-class ProductHasOrdersSerializer(serializers.ModelSerializer):
+class ProductHasOrdersSerializer(serializers.HyperlinkedModelSerializer):
 	""" purpose: convert ProductHasOrders model to JSON format
 		author: Shawn
 		methods: Meta
